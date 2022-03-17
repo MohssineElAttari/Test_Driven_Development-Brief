@@ -22,7 +22,7 @@ public interface ClientDAO {
     List<Client> getClientsBySex(String sex);
 
     // “/clients/{id}” → Supprimer un client (désactiver)
-    Client deleteClient(Long id);
+    void deleteClient(Long id);
 
     // “/clients/{id}” → Modifier un client.
     Client updateClient(Client client);

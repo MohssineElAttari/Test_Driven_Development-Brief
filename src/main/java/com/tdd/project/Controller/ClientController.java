@@ -1,6 +1,7 @@
 package com.tdd.project.Controller;
 
 import com.tdd.project.Entity.Client;
+import com.tdd.project.Enum.SexEnumeration;
 import com.tdd.project.Service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class ClientController {
     }
 
     @GetMapping("/bySex/{sex}")
-    public List<Client> findBySex(@PathVariable(name = "sex") String sex){
+    public List<Client> findBySex(@PathVariable(name = "sex") SexEnumeration sex){
         return clientService.getClientsBySex(sex);
     }
 

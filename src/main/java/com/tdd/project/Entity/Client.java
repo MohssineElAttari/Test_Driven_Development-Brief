@@ -17,6 +17,15 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    public Client(@NonNull String email, @NonNull String phone, @NonNull String nomComplete, @NonNull int age, @NonNull SexEnumeration sex, @NonNull boolean isActive) {
+        this.email = email;
+        this.phone = phone;
+        this.nomComplete = nomComplete;
+        this.age = age;
+        this.sex = sex;
+        this.isActive = isActive;
+    }
+
     @NonNull
 //    @NotBlank(message="Please enter your email")
     private String email;

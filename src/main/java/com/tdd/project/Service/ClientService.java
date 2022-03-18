@@ -2,6 +2,7 @@ package com.tdd.project.Service;
 
 import com.tdd.project.DAO.ClientDAO;
 import com.tdd.project.Entity.Client;
+import com.tdd.project.Enum.SexEnumeration;
 import com.tdd.project.Repository.ClientRipository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,11 +32,12 @@ public class ClientService implements ClientDAO {
 
     @Override
     public Client findClientByEmail(String email) {
+//        return new Client(1L,"email","0615722515","ah howa ana",33, SexEnumeration.HOMME,true);
         return clientRipository.findByEmail(email);
     }
 
     @Override
-    public List<Client> getClientsBySex(String sex) {
+    public List<Client> getClientsBySex(SexEnumeration sex) {
         return clientRipository.findBySex(sex);
     }
 
@@ -47,5 +49,9 @@ public class ClientService implements ClientDAO {
     @Override
     public Client updateClient(Client client) {
         return clientRipository.save(client);
+    }
+
+    public List<Client> CompteActive(){
+        return clientRipository.ClientActive();
     }
 }

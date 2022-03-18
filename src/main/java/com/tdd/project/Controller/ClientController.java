@@ -46,9 +46,12 @@ public class ClientController {
         return clientService.updateClient(client);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{id}")
     public void deleteClient(@RequestParam(name = "id") Long id){
         clientService.deleteClient(id);
     }
-
+    @GetMapping("/activecompte")
+    public List<Client> CompteActive(){
+        return clientService.CompteActive();
+    }
 }

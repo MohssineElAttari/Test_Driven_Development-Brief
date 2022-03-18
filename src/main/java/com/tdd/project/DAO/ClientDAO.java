@@ -1,6 +1,7 @@
 package com.tdd.project.DAO;
 
 import com.tdd.project.Entity.Client;
+import com.tdd.project.Enum.SexEnumeration;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface ClientDAO {
     Client findClientByEmail(String email);
 
     // “/clients/all/{sex}” → Chercher l’ensemble des clients par sex.
-    List<Client> getClientsBySex(String sex);
+    List<Client> getClientsBySex(SexEnumeration sex);
 
     // “/clients/{id}” → Supprimer un client (désactiver)
     void deleteClient(Long id);

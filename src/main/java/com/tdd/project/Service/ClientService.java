@@ -52,6 +52,10 @@ public class ClientService implements ClientDAO {
     }
 
     public List<Client> CompteActive(){
-        return clientRipository.ClientActive();
+        if (clientRipository.ClientActive()==null){
+            return null;
+        }
+        return  clientRipository.ClientActive();
+
     }
 }

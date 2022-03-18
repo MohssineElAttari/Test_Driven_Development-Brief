@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/api/client")
 public class ClientController {
 
     @Autowired
@@ -16,10 +16,11 @@ public class ClientController {
 
     @PostMapping("/add")
     public Client addClient(@RequestBody Client client){
+        System.out.println(client.toString());
         return clientService.addClient(client);
     }
 
-    @GetMapping("getAll")
+    @GetMapping("/getAll")
     public List<Client> getAllClients(){
         return clientService.getAllClients();
     }

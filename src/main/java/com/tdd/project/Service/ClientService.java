@@ -27,6 +27,8 @@ public class ClientService implements ClientDAO {
 
     @Override
     public Client findClientById(Long idClient) {
+        if (clientRipository.findById(idClient).isEmpty())
+        return  null;
         return clientRipository.findById(idClient).get();
     }
 

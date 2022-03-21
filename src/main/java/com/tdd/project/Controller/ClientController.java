@@ -27,7 +27,7 @@ public class ClientController {
             Client result = clientService.addClient(client);
             return ResponseHandler.generateResponse("Successfully added data!", HttpStatus.OK, result);
         }catch(Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.MULTI_STATUS,null);
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,null);
         }
     }
 

@@ -49,8 +49,18 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public void deleteClient(Long id) {
-        clientRipository.deleteById(id);
+    public String deleteClient(Long id) {
+        try {
+            if(clientRipository.findById(id).isPresent()){
+                clientRipository.deleteById(id);
+                return "Customer has been removed successfully!";
+            }else{
+                return "The customer has not been removed!";
+            }
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+            return "null";
+        }
     }
 
     @Override

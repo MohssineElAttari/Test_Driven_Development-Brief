@@ -1,5 +1,6 @@
 package com.tdd.project.Service;
 
+import com.sun.source.tree.ModuleTree;
 import com.tdd.project.Entity.Client;
 import com.tdd.project.Enum.SexEnumeration;
 import com.tdd.project.Repository.ClientRipository;
@@ -159,16 +160,41 @@ class ClientServiceTest {
 
     @Test
     void deleteClient() {
-
+        Mockito.lenient().when(clientRipository.findById(1L)).thenReturn(Optional.of(client));
+        System.out.println(clientService.deleteClient(client.getId()));
+        assertEquals(clientService.deleteClient(client.getId()),"Customer has been removed successfully!");
     }
 
     @Test
     void updateClient() {
-
+        Client client1 = new Client(2L, "mohsssine@gmail.com","+212612345678","elastamo",25,SexEnumeration.HOMME,true);
+        Mockito.lenient().when(clientRipository.findById(client.getId())).thenReturn(Optional.of(client));
+        client1.setEmail("yap_map@gmail.com");
+        client1.setNomComplete("yap map");
+        System.out.println(client1);
+        System.out.println(client);
+        assertEquals(clientService.findClientById(1L),client);
     }
 
     @Test
     void compteActive() {
+        List<Client> clients = new ArrayList<>();
 
+        clients.add(client);
+        clients.add(client2);
+        clients.add(client3);
+        Mockito.lenient().when(clientRipository.ClientActive()).thenReturn(clients);
+
+        clients.forEach(c->{
+            System.out.println(c);
+        });
+        System.out.println("***************************");
+        List<Client> clientList=clientService.CompteActive();
+        clientList.forEach(cc->{
+            System.out.println(cc);
+
+        });
+
+        assertEquals(clientService.CompteActive(),clients);
     }
 }

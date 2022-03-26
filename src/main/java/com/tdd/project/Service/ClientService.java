@@ -1,6 +1,5 @@
 package com.tdd.project.Service;
 
-import com.tdd.project.DAO.ClientDAO;
 import com.tdd.project.Entity.Client;
 import com.tdd.project.Enum.SexEnumeration;
 import com.tdd.project.Repository.ClientRipository;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ClientService implements ClientDAO {
+public class ClientService implements IClientService {
 
     @Autowired
     private ClientRipository clientRipository;
@@ -27,20 +26,26 @@ public class ClientService implements ClientDAO {
 
     @Override
     public Client findClientById(Long idClient) {
-        if (clientRipository.findById(idClient).isEmpty())
-        return  null;
+        Client existClient = clientRipository.findById(idClient).orElse(null);
+        if(existClient!=null){
         return clientRipository.findById(idClient).get();
+        }
+        return existClient;
     }
 
     @Override
     public Client findClientByEmail(String email) {
 //        return new Client(1L,"email","0615722515","ah howa ana",33, SexEnumeration.HOMME,true);
-        return clientRipository.findByEmail(email);
+        Client existClient = clientRipository.findClientByEmail(email);
+        if(existClient!=null){
+            return clientRipository.findClientByEmail(email);
+        }
+        return existClient;
     }
 
     @Override
     public List<Client> getClientsBySex(SexEnumeration sex) {
-        return clientRipository.findBySex(sex);
+        return clientRipository.findClientBySex(sex);
     }
 
     @Override
@@ -50,7 +55,12 @@ public class ClientService implements ClientDAO {
 
     @Override
     public Client updateClient(Client client) {
-        return clientRipository.save(client);
+        Client existClient = clientRipository.findById(client.getId()).orElse(null);
+        if(existClient!=null){
+
+            return clientRipository.save(client);
+        }
+        return client;
     }
 
     public List<Client> CompteActive(){

@@ -10,19 +10,33 @@ import java.util.List;
 
 public interface ClientRipository extends JpaRepository<Client,Long> {
 
+//    ******************************************
 
     Client findByEmail(String email);
 
-    List<Client> findBySex(SexEnumeration sex);
+    @Query(value = "select * from CLIENT where EMAIL = :email",  nativeQuery = true)
+    Client findClientByEmail( @Param("email") String email);
 
+    //******************************************
+    @Query(value = "select * from CLIENT where SEX = :sex",  nativeQuery = true)
+    List<Client> findClientBySex(@Param("sex") SexEnumeration sex);
 
     @Query("SELECT count(e) FROM Client e WHERE UPPER(e.sex) = upper(:sex) ")
     int numberOfClinetBySex(@Param("sex") SexEnumeration sex);
 
+    //******************************************
+
     @Query("SELECT count(e) FROM Client e where  e.age=:age")
     int numberOfClientByAge(@Param("age") int age);
 
+    //******************************************
+
     @Query("SELECT e FROM Client e where e.isActive=true ")
     List<Client> ClientActive();
+
+    //******************************************
+
+
+
 
 }

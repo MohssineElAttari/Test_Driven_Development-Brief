@@ -17,7 +17,7 @@ public interface IClientService {
 
     List<Client> getClientsBySex(SexEnumeration sex);
 
-    void deleteClient(Long id);
+    String deleteClient(Long id);
 
     Client updateClient(Client client);
 

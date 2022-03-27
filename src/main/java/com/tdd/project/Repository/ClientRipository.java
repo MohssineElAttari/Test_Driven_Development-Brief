@@ -26,7 +26,7 @@ public interface ClientRipository extends JpaRepository<Client,Long> {
 
     //******************************************
 
-    @Query("SELECT count(e) FROM Client e where  e.age=:age")
+    @Query("SELECT count(e) FROM Client e where e.age=:age")
     int numberOfClientByAge(@Param("age") int age);
 
     //******************************************

@@ -4,7 +4,7 @@
 
 <p>Afin de réaliser un plan de test et pour but de simplicité, on va réaliser une simple microservice permettant la gestion des clients d’une entreprise B2C.</p>
 
-​
+<img src="tdd.png">
 
 Un client se caractérise par un :
 

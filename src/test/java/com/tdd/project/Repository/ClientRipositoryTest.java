@@ -81,9 +81,8 @@ class ClientRipositoryTest {
         clientList.add(client2);
         clientList.add(client3);
         List<Client>clients=clientList;
-
-        Mockito.lenient().when(clientRipository.numberOfClientByAge(22));
-        assertEquals(clientRipository.numberOfClientByAge(22),3);
+        Mockito.doReturn(2).when(clientRipository).numberOfClientByAge(25);
+        assertEquals(clientRipository.numberOfClientByAge(25),2);
     }
 
     @Test

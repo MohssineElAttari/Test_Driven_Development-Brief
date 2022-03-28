@@ -1,9 +1,12 @@
 package com.tdd.project.Controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tdd.project.Entity.Client;
 import com.tdd.project.Enum.SexEnumeration;
 import com.tdd.project.Repository.ClientRipository;
 import com.tdd.project.Service.ClientService;
+import com.tdd.project.util.JsonUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,11 +20,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,16 +56,21 @@ class ClientControllerTest {
         clients.add(client3);
     }
     @Test
-    void addClient() {
+    void addClient() throws Exception {
+        Mockito.doReturn(client).when(clientService).addClient(client);
 
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/client/add")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(JsonUtil.toJson(client)))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
     void getAllClients() throws Exception {
 
-        BDDMockito.given(clientService.getAllClients()).willReturn(clients);
-//        Mockito.doReturn(clients).when(clientService).getAllClients();
-//        List<Client>clients1=clientService.getAllClients();
+        Mockito.doReturn(clients).when(clientService).getAllClients();
+        // BDDMockito.given(clientService.getAllClients()).willReturn(clients);
+        // List<Client>clients1=clientService.getAllClients();
         clients.forEach(c->{
             System.out.println(c);
         });
@@ -69,7 +79,12 @@ class ClientControllerTest {
     }
 
     @Test
-    void findByID() {
+    void findByID() throws Exception {
+        Mockito.doReturn(client).when(clientService).findClientById(client.getId());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/client//byId/"+client.getId()))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
     }
 
     @Test
@@ -81,11 +96,24 @@ class ClientControllerTest {
     }
 
     @Test
-    void updateClient() {
+    void updateClient() throws Exception {
+        Mockito.doReturn(client).when(clientService).updateClient(client);
+
+        ObjectMapper mapper = new ObjectMapper();
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/client/update")
+                        .content(mapper.writeValueAsString(client))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
     }
 
     @Test
-    void deleteClient() {
+    void deleteClient() throws Exception {
+//        Mockito.doReturn("Customer has been removed successfully!").when(clientService).deleteClient(client.getId());
+//
+//        mockMvc.perform(MockMvcRequestBuilders.delete("/api/client/delete/"+client.getId())
+//                        .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test

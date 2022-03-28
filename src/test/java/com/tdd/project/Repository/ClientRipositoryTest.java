@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ClientRipositoryTest {
 
     @Mock
-    private ClientRipository clientRipository;
+    private ClientRepository clientRipository;
 
     Client client1 = new Client(1L,"Mohssine@gmail.com","+212618123456","mohssine elattari",25, SexEnumeration.HOMME,true);
     Client client2 = new Client(2L,"younes@gmail.com","+212615722515","younes maska",25, SexEnumeration.HOMME,true);

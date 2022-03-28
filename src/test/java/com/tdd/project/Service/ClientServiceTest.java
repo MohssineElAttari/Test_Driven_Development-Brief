@@ -3,7 +3,7 @@ package com.tdd.project.Service;
 import com.sun.source.tree.ModuleTree;
 import com.tdd.project.Entity.Client;
 import com.tdd.project.Enum.SexEnumeration;
-import com.tdd.project.Repository.ClientRipository;
+import com.tdd.project.Repository.ClientRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
@@ -31,7 +31,7 @@ import static org.mockito.Mockito.verify;
 class ClientServiceTest {
 
     @Mock
-    ClientRipository clientRipository;
+    ClientRepository clientRipository;
 
     @InjectMocks
     ClientService clientService;

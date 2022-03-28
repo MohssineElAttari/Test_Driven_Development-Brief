@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tdd.project.Entity.Client;
 import com.tdd.project.Enum.SexEnumeration;
-import com.tdd.project.Repository.ClientRipository;
 import com.tdd.project.Service.ClientService;
 import com.tdd.project.util.JsonUtil;
 import org.junit.jupiter.api.BeforeEach;

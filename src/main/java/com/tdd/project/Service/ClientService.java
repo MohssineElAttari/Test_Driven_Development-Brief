@@ -2,7 +2,8 @@ package com.tdd.project.Service;
 
 import com.tdd.project.Entity.Client;
 import com.tdd.project.Enum.SexEnumeration;
-import com.tdd.project.Repository.ClientRipository;
+import com.tdd.project.Repository.ClientRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,23 +13,23 @@ import java.util.List;
 public class ClientService implements IClientService {
 
     @Autowired
-    private ClientRipository clientRipository;
+    private ClientRepository clientRepository;
 
     @Override
     public Client addClient(Client client) {
-        return clientRipository.save(client);
+        return clientRepository.save(client);
     }
 
     @Override
     public List<Client> getAllClients() {
-        return clientRipository.findAll();
+        return clientRepository.findAll();
     }
 
     @Override
     public Client findClientById(Long idClient) {
-        Client existClient = clientRipository.findById(idClient).orElse(null);
+        Client existClient = clientRepository.findById(idClient).orElse(null);
         if(existClient!=null){
-        return clientRipository.findById(idClient).get();
+        return clientRepository.findById(idClient).get();
         }
         return existClient;
     }
@@ -36,23 +37,23 @@ public class ClientService implements IClientService {
     @Override
     public Client findClientByEmail(String email) {
 //        return new Client(1L,"email","0615722515","ah howa ana",33, SexEnumeration.HOMME,true);
-        Client existClient = clientRipository.findClientByEmail(email);
+        Client existClient = clientRepository.findClientByEmail(email);
         if(existClient!=null){
-            return clientRipository.findClientByEmail(email);
+            return clientRepository.findClientByEmail(email);
         }
         return existClient;
     }
 
     @Override
     public List<Client> getClientsBySex(SexEnumeration sex) {
-        return clientRipository.findClientBySex(sex);
+        return clientRepository.findClientBySex(sex);
     }
 
     @Override
     public String deleteClient(Long id) {
         try {
-            if(clientRipository.findById(id).isPresent()){
-                clientRipository.deleteById(id);
+            if(clientRepository.findById(id).isPresent()){
+                clientRepository.deleteById(id);
                 return "Customer has been removed successfully!";
             }else{
                 return "The customer has not been removed!";
@@ -65,19 +66,19 @@ public class ClientService implements IClientService {
 
     @Override
     public Client updateClient(Client client) {
-        Client existClient = clientRipository.findById(client.getId()).orElse(null);
+        Client existClient = clientRepository.findById(client.getId()).orElse(null);
         if(existClient!=null){
 
-            return clientRipository.save(client);
+            return clientRepository.save(client);
         }
         return client;
     }
 
     public List<Client> CompteActive(){
-        if (clientRipository.ClientActive()==null){
+        if (clientRepository.ClientActive()==null){
             return null;
         }
-        return  clientRipository.ClientActive();
+        return  clientRepository.ClientActive();
 
     }
 }

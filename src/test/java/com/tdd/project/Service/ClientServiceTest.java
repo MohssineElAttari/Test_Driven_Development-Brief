@@ -146,7 +146,7 @@ class ClientServiceTest {
     void findClientByEmail() {
         Mockito.lenient().when(clientRipository.findClientByEmail("mohssine.elattari@gmail.com")).thenReturn(client);
         System.out.println(client);
-        Client client1 = clientService.findClientByEmail("mohssine@gmail.com");
+        Client client1 = clientService.findClientByEmail("mohssine.elattari@gmail.com");
         System.out.println(client1);
         assertEquals(client1,client);
     }

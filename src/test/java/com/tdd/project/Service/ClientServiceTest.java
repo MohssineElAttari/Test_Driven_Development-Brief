@@ -42,7 +42,7 @@ class ClientServiceTest {
 
     @BeforeEach
     void setUp() {
-        client = new Client(1L,"mohssine.elattari@gmail.com","+212615722515","fullName",26, SexEnumeration.HOMME,true);
+        client = new Client(1L,"mohssine.elattari@gmail.com","+21269845678","fullName",26, SexEnumeration.HOMME,true);
         client2 = new Client(2L, "mohsssine@gmail.com","+212612345678","elastamo",25,SexEnumeration.HOMME,true);
         client3 = new Client(3L, "sara@gmail.com","+212612367328","saralato",12,SexEnumeration.FAMME,true);
 

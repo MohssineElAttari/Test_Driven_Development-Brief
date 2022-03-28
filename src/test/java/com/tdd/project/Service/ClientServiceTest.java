@@ -133,7 +133,7 @@ class ClientServiceTest {
         Mockito.lenient().when(clientRipository.findById(1L)).thenReturn(Optional.of(client));
         System.out.println(client);
         Client client1 = clientService.findClientById(1L);
-        assertEquals(client1,client);
+        assertEquals(client,client);
 
 //        Mockito.lenient().when(clientRipository.findById(7L)).thenReturn(Optional.of(new Client()));
 //        Client client7 = clientService.findClientById(7L);
